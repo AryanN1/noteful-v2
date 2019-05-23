@@ -16,8 +16,8 @@ export default class AddFolder extends Component {
 
   handleSubmit(event, folderName) {
     event.preventDefault();
-    console.log('handle submit ran');
-    this.context.addFolder(folderName);
+    let isValid = this.validateFolderName(folderName)
+  if (isValid) this.context.addFolder(folderName);
   }
 
   validateFolderName(name) {
@@ -44,6 +44,7 @@ export default class AddFolder extends Component {
       },
       this.formValid(name)
     );
+    return hasError
   }
 
   formValid(name) {
@@ -79,7 +80,7 @@ export default class AddFolder extends Component {
               />
             </div>
             <div className="buttons">
-              <button type="submit" disabled={!this.state.folderNameValid}>
+              <button type="submit">
                 Add folder
               </button>
             </div>
